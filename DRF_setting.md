@@ -62,6 +62,12 @@ class foo:
 	age: int
 ```
 
+Serializer는 Django `Form` 클래스와 매우 유사한 개념으로, 다양한 필 `required`, `max_length` and `default`와 같은 유사한 유효성 검사 flag를 포함한다. 
+
+📍form과의 차이점
+
+:`form`은 **HTML form**을 생성하는데, `Serializer`는 결과물이 Json
+
 
 
 # setting
@@ -84,4 +90,21 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
 }
 ```
+
+
+
+## Detail view
+
+> 특정 primary_key에 해당하는 모델에 대한 세부사항을 보여주는 뷰
+
+```python
+@action(detail=True, methods=["get", "post"])
+    def add_browser_today(self, request, pk=None):
+        queryset = self.get_queryset().filter(pk=pk, creator_id=request.users_id).first()
+        new_history = Statistic()
+        new_history.record(request, queryset, {})
+        return MsgOk()
+```
+
+`@action` 매핑, `detail=True`
 
