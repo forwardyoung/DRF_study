@@ -80,9 +80,11 @@ pip install djangorestframework
 
 2. 프로젝트 폴더의 `settings.py` 파일 - `INSTALLED_APPS`에 `rest_framework`를 추가한다.
 
-3. [pagination style](https://www.django-rest-framework.org/api-guide/pagination/#setting-the-pagination-style)을 설정한다.
+**🍯 option**
 
-   ➡️ `DEFAULT_PAGINATION_CLASS`과  `PAGE_SIZE` 모두 기본값이 `None`이다.
+ [pagination style](https://www.django-rest-framework.org/api-guide/pagination/#setting-the-pagination-style)을 설정한다.
+
+➡️ `DEFAULT_PAGINATION_CLASS`과  `PAGE_SIZE` 모두 기본값이 `None`이다.
 
 ```
 REST_FRAMEWORK = {
@@ -91,7 +93,18 @@ REST_FRAMEWORK = {
 }
 ```
 
+3. 브라우저를 통해 API를 테스트하고자 할 때, 인증하기 위한 과정에 필요한 다음 코드를 루트 `urls.py`에 추가한다.
 
+```python
+urlpatterns = [
+    ...
+    path('api-auth/', include('rest_framework.urls'))
+]
+```
+
+4. 서버를 실행시킨 후, api-auth로 경로를 입력하면 로그인과 로그아웃 페이지를 확인할 수 있다.
+
+![image-20230310171434839](C:\Users\726jo\AppData\Roaming\Typora\typora-user-images\image-20230310171434839.png)
 
 ## Detail view
 
